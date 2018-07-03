@@ -135,6 +135,96 @@ sudo su root -c "printf 'workers = 0\n' >> /etc/odoo/odoo.conf"
 sudo chown odoo:odoo /etc/odoo/odoo.conf
 sudo chmod 640 /etc/odoo/odoo.conf
 
+#--------------------------------------------------
+# Instalamos Dependencias usando pip3
+#--------------------------------------------------
+
+sudo su - odoo -c "pip3 install Babel decorator docutils ebaysdk feedparser gevent greenlet html2text Jinja2 lxml Mako MarkupSafe mock num2words ofxparse passlib Pillow psutil psycogreen psycopg2 pydot pyparsing PyPDF2 pyserial python-dateutil python-openid pytz pyusb PyYAML qrcode reportlab requests six suds-jurko vatnumber vobject Werkzeug XlsxWriter xlwt xlrd"
+
+#--------------------------------------------------
+# Para Facturación Electrónica Chilena se requiere las siguientes dependencias
+#--------------------------------------------------
+
+#sudo su - odoo -c "pip3 install xmltodict dicttoxml pdf417gen pyOpenSSL cchardet urllib3 SOAPpy pysftp num2words signxml" 
+sudo su - odoo -c "pip3 install lxml"
+sudo su - odoo -c "pip3 install feedparser"
+sudo su - odoo -c "pip3 install geopy==0.95.1 BeautifulSoup pyOpenSSL suds"
+sudo su - odoo -c "pip3 install urllib3"
+sudo su - odoo -c "pip3 install fabric"
+sudo su - odoo -c "pip3 install pymssql"
+sudo su - odoo -c "pip3 install traceback2"
+sudo su - odoo -c "pip3 install markupsafe"
+sudo su - odoo -c "pip3 install pyinotify"
+sudo su - odoo -c "pip3 install git+https://github.com/aeroo/aeroolib.git@master"
+sudo su - odoo -c "pip3 install genshi==0.6.1 BeautifulSoup odfpy werkzeug==0.8.3 http pyPdf xlrd pycups erppeek"
+
+sudo su - odoo -c "pip3 install M2Crypto pyopenssl"
+
+sudo su root -c "pip3 install xmltodict dicttoxml pdf417gen cchardet pyOpenSSL signxml pysftp num2words SOAPpy urllib3"
+
+
+#--------------------------------------------------
+# Agregamos Módulos Chilenos
+#--------------------------------------------------
+
+echo -e "*Damos permiso a las carpetas "
+cd /home/odoo/custom/
+sudo chmod 777 addons
+cd
+
+echo -e "*Descargamos los modulos de Facturación Electrónica "
+sudo git clone https://github.com/odoocoop/facturacion_electronica  
+cd facturacion_electronica
+sudo cp -r ~/facturacion_electronica/l10n_cl_dte_factoring /home/odoo/custom/addons
+sudo cp -r ~/facturacion_electronica/l10n_cl_dte_point_of_sale /home/odoo/custom/addons
+sudo cp -r ~/facturacion_electronica/l10n_cl_fe /home/odoo/custom/addons
+sudo cp -r ~/facturacion_electronica/l10n_cl_stock_picking /home/odoo/custom/addons
+
+cd
+
+sudo chown -R daemon:daemon /home/odoo/custom/addons/l10n_cl_dte_factoring
+sudo chown -R daemon:daemon /home/odoo/custom/addons/l10n_cl_dte_point_of_sale
+sudo chown -R daemon:daemon /home/odoo/custom/addons/l10n_cl_fe
+sudo chown -R daemon:daemon /home/odoo/custom/addons/l10n_cl_stock_picking
+
+cd
+echo -e "* Descargamos los Módulos de contabilidad"
+sudo git clone https://github.com/KonosCL/addons-konos
+cd addons-konos
+sudo cp -r ~/addons-konos/l10n_cl_chart_of_account /home/odoo/custom/addons
+sudo cp -r ~/addons-konos/l10n_cl_hr /home/odoo/custom/addons
+
+cd
+echo -e "* Descargamos el Módulo de localización Chile "
+sudo chown -R daemon:daemon /home/odoo/custom/addons/l10n_cl_chart_of_account
+sudo chown -R daemon:daemon /home/odoo/custom/addons/l10n_cl_hr
+
+cd
+echo -e "*Descargamos el tema de personalización "
+sudo git clone https://github.com/Openworx/backend_theme
+cd backend_theme
+sudo cp -r ~/backend_theme/backend_theme_v11 /home/odoo/custom/addons
+sudo chown -R daemon:daemon /home/odoo/custom/addons/backend_theme_v11
+
+cd
+echo -e "*Descargamos el modulo de vista responsiva "
+sudo git clone https://github.com/OCA/web
+cd web
+sudo cp -r ~/web/web_responsive /home/odoo/custom/addons
+sudo chown -R daemon:daemon /home/odoo/custom/addons/web_responsive
+
+cd 
+echo -e "*Descargamos el modulo de Reportes "
+sudo git clone https://github.com/OCA/reporting-engine
+cd reporting-engine
+sudo cp -r ~/reporting-engine/report_xlsx /home/odoo/custom/addons
+cd
+
+cd /odoo/custom
+sudo chmod 755 addons/
+cd
+
+
 echo -e "\n---- Editamos el archivo de configuración de OdooServer. ----"
 #sudo nano /etc/odoo/odoo.conf
 

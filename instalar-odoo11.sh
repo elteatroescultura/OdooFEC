@@ -158,7 +158,7 @@ echo -e "\n---- Iniciamos Odoo: ----"
 sudo /etc/init.d/odoo start
 
 echo "-----------------------------------------------------------"
-echo "Listo! El servidor Odoo esta ariba y corriendo. Especificaciones:"
+echo "Listo! El servidor Odoo esta arriba y corriendo. Especificaciones:"
 echo "Puerto: 8069"
 echo "Usuario del servicio: ubuntu, inicie con sudo su - ubuntu"
 echo "Directorio de Addons oficial: /home/odoo/11.0/addons/"

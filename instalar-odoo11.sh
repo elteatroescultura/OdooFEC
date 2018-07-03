@@ -219,6 +219,11 @@ sudo git clone https://github.com/OCA/reporting-engine
 cd reporting-engine
 sudo cp -r ~/reporting-engine/report_xlsx /home/odoo/custom/addons
 cd
+echo -e "*Descargamos el modulo de conexión de base de datos externa "
+sudo git clone https://github.com/OCA/server-backend
+cd server-backend
+sudo cp -r ~/server-backend/base_external_dbsource /home/odoo/custom/addons
+cd
 
 cd /odoo/custom
 sudo chmod 755 addons/

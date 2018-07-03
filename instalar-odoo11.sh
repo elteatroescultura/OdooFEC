@@ -42,8 +42,8 @@ sudo wget https://raw.githubusercontent.com/odoo/odoo/11.0/requirements.txt
 sudo -H pip3 install -r requirements.txt
 
 echo -e "\n---- Descargando OdooServer  (114 Mb) aprox.: ----"
-sudo su - odoo -c git clone https://github.com/odoo/odoo.git /home/odoo/odoo-11.0 -b 11.0 --depth=1
-sudo su - odoo -c /home/odoo/odoo-11.0/odoo-bin --save --stop-after-init
+sudo su - odoo -c "git clone https://github.com/odoo/odoo.git /home/odoo/odoo-11.0 -b 11.0 --depth=1"
+sudo su - odoo -c "/home/odoo/odoo-11.0/odoo-bin --save --stop-after-init"
 echo -e "\n---- Salimos de la sesión del usuario (odoo) en la consola: ----"
 #exit
 

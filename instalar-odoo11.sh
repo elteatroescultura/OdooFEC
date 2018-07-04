@@ -24,6 +24,8 @@ sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install git -y
 sudo apt-get install fontconfig -y
+sudo chown -R odoo:odoo /home/*
+sudo su root -c "printf 'UseDNS no\n' >> /etc/ssh/sshd_config"
 
 echo -e "\n---- Creamos un usuario (odoo) para ejecutar Odoo Server ---"
 sudo adduser --disabled-password --gecos "Odoo" odoo

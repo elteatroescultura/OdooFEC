@@ -253,6 +253,7 @@ sudo update-rc.d odoo defaults
 
 echo -e "\n---- Iniciamos Odoo: ----"
 sudo /etc/init.d/odoo start
+sudo reboot
 
 echo "-----------------------------------------------------------"
 echo "Listo! El servidor Odoo esta arriba y corriendo. Especificaciones:"

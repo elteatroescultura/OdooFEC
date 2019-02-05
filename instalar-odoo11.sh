@@ -11,9 +11,9 @@
 # Hacer un nuevo arhivo:
 # sudo nano instalar-odoo.sh
 # Coloque este contenido en el archivo y hágalo ejecutable:
-# sudo chmod +x odoo-install.sh
+# sudo chmod +x instalar-odoo.sh
 # Ejecute el archivo para instalar Odoo:
-# ./instalar Odoo
+# ./instalar-odoo.sh
 ################################################################################
 
 #--------------------------------------------------
